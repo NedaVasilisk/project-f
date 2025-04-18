@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import {cn} from "@/lib/utils";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/ui/Navbar";
+import {Toaster} from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,6 +25,8 @@ export default function RootLayout({
         <div className='container max-w-7xl mx-auto h-full pt-12'>
           {children}
         </div>
+
+        <Toaster />
       </body>
     </html>
   );
