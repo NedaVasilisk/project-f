@@ -3,12 +3,13 @@ import {FC} from 'react'
 import {Avatar, AvatarFallback} from "@/components/ui/avatar";
 import Image from 'next/image'
 import {Icons} from "./ui/Icons";
+import {AvatarProps} from "@radix-ui/react-avatar";
 
-interface UserAvatarProps {
-    user: Pick<User, 'name' | 'image' | 'email'>
+interface UserAvatarProps extends AvatarProps {
+    user: Pick<User, 'image' | 'name'>
 }
 
-const  UserAvatar: FC<UserAvatarProps> = ({user, ...props}) => {
+const  UserAvatar: FC<UserAvatarProps> = ({user, ...props}: UserAvatarProps) => {
     return <Avatar {...props}>
         {user.image ? (<div className='relative aspect-square h-full w-full'>
             <Image fill src={user.image} alt='profile picture' referrerPolicy='no-referrer'/>

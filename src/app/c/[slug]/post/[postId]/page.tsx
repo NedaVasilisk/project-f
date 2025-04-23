@@ -9,6 +9,7 @@ import { Post, User, Vote } from '@prisma/client'
 import { ArrowBigDown, ArrowBigUp, Loader2 } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import CommentsSection from "@/components/CommentsSection";
 
 interface CommunityPostPageProps {
     params: {
@@ -69,7 +70,13 @@ const CommunityPostPage = async ({ params }: CommunityPostPageProps) => {
                     </h1>
 
                     <EditorOutput content={post?.content ?? cachedPost.content} />
-
+                    <Suspense
+                        fallback={
+                            <Loader2 className='h-5 w-5 animate-spin text-zinc-500' />
+                        }>
+                        {/* @ts-expect-error Server Component */}
+                        <CommentsSection postId={post?.id ?? cachedPost.id} />
+                    </Suspense>
                 </div>
             </div>
         </div>
