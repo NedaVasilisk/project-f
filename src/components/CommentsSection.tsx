@@ -23,10 +23,10 @@ interface CommentsSectionProps {
 const CommentsSection = async ({ postId }: CommentsSectionProps) => {
     const session = await getAuthSession()
 
+    console.log(postId)
     const comments = await db.comment.findMany({
         where: {
             postId: postId,
-            replyToId: null,
         },
         include: {
             author: true,
@@ -40,7 +40,6 @@ const CommentsSection = async ({ postId }: CommentsSectionProps) => {
         },
     })
 
-    console.log('COMMENTS:', comments)
     return (
         <div className='flex flex-col gap-y-4 mt-4'>
             <hr className='w-full h-px my-6' />
